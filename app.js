@@ -24,6 +24,10 @@ import eventosRoutes from './routes/eventos.js';
 import inscricoesRoutes from './routes/inscricoes.js';
 import authRoutes from './routes/auth.js';
 
+app.get('/', () => {
+  return 'Ola Mundi'
+})
+
 app.use('/api/eventos', eventosRoutes);
 app.use('/api/inscricoes', inscricoesRoutes);
 app.use('/api/auth', authRoutes);
