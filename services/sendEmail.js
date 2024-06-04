@@ -16,7 +16,7 @@ const transport = nodemailer.createTransport({
 const sendEventEmail = async (toEmail, name, eventName, eventDate, image) => {
   const mailOptions = {
     from: 'Eventos Uniavan <'+process.env.EMAIL_USER+'>',
-    to: toEmail,
+    to: 'caiomafra10@gmail.com',
     subject: 'Inscrição Confirmada!',
     html: `
       <h2>Olá ${name},</h2>
@@ -29,6 +29,7 @@ const sendEventEmail = async (toEmail, name, eventName, eventDate, image) => {
 
   try {
     const res = await transport.sendMail(mailOptions);
+    console.log(res)
     return true;
   } catch (error) {
     throw error;

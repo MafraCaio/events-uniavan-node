@@ -39,7 +39,7 @@ router.post('/', async (req, res) => {
     const inscricao = await novaInscricao.save();
 
     // Recupera o ID da inscrição
-    const inscricaoId = inscricao._id;
+    const inscricaoId = inscricao._id.toString();
 
     evento.inscricoes.push(inscricao);
     await evento.save();
@@ -47,18 +47,15 @@ router.post('/', async (req, res) => {
     // Gerar QR Code
     try {
       const qrCode = await generateQrCodeBase64(inscricaoId);
+  
+      sendEventEmail(inscricao.email, inscricao.nome, evento.nome, evento.dia, qrCode);
+      res.json({...inscricao._doc, qrCode});
     } catch (error) {
-      return error
-    }
-    
-    try {
-      const sendEmail = await sendEventEmail(inscricao.email, inscricao.nome, evento.nome, evento.dia, qrCode);
-    } catch (error) {
-      return error
+      console.log(error)
     }
     
 
-    res.json(inscricao);
+    
   } catch (err) {
     res.status(500).send('Erro no servidor');
   }

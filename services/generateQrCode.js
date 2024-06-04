@@ -7,6 +7,7 @@ import QRCode from 'qrcode';
  */
 const generateQrCodeBase64 = async (text) => {
   try {
+    console.log(text);
     // Gerar QR code com o texto fornecido
     const qrCodeDataURL = await QRCode.toDataURL(text);
     console.log(qrCodeDataURL)
