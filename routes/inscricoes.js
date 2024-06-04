@@ -48,13 +48,13 @@ router.post('/', async (req, res) => {
     try {
       const qrCode = await generateQrCodeBase64(inscricaoId);
     } catch (error) {
-
+      return error
     }
     
     try {
       const sendEmail = await sendEventEmail(inscricao.email, inscricao.nome, evento.nome, evento.dia, qrCode);
     } catch (error) {
-
+      return error
     }
     
 
