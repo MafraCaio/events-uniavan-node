@@ -8,7 +8,6 @@ dotenv.config();
 const app = express();
 
 // Conectar ao banco de dados
-connectDB();
 
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
