@@ -48,7 +48,7 @@ router.post('/', async (req, res) => {
     try {
       const qrCode = await generateQrCodeBase64(inscricaoId);
   
-      sendEventEmail(inscricao.email, inscricao.nome, evento.nome, evento.dia, qrCode);
+      sendEventEmail(inscricao.email, inscricao.nome, evento.nome, evento.descricao, evento.sala, evento.dia, inscricaoId);
       res.json({...inscricao._doc, qrCode});
     } catch (error) {
       console.log(error)
